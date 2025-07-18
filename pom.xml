@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>IntelligentScheduler</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>24</maven.compiler.source>
+        <maven.compiler.target>24</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- JavaFX Controls (buttons, lists, etc.) -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>17.0.2</version>
+        </dependency>
+
+        <!-- JavaFX FXML (for separating UI design from code) -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>17.0.2</version>
+        </dependency>
+
+        <!-- SQLite Database Driver -->
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.40.1.0</version>
+        </dependency>
+
+        <!-- ADD THIS DEPENDENCY for JSON processing -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Plugin 1: Standard Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin 2: JavaFX Plugin (for running and creating the runtime) -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <executions>
+                    <execution>
+                        <id>default-cli</id>
+                        <configuration>
+                            <mainClass>com.yourname.scheduler/com.yourname.scheduler.MainApp</mainClass>
+                            <!-- This tells jlink where to put the runtime image -->
+                            <jlinkImageName>app-runtime</jlinkImageName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Plugin 3: jpackage Plugin (for creating the installer) -->
+            <plugin>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>1.5.0</version>
+                <configuration>
+                    <name>IntelligentScheduler</name>
+                    <appVersion>1.0.0</appVersion>
+                    <vendor>Your Name</vendor>
+                    <destination>target/dist</destination>
+
+                    <!-- This tells jpackage where to find the runtime image -->
+                    <runtimeImage>target/app-runtime</runtimeImage>
+
+                    <module>com.yourname.scheduler/com.yourname.scheduler.MainApp</module>
+
+                    <!-- Platform-Specific Settings -->
+                    <winMenu>true</winMenu>
+                    <winShortcut>true</winShortcut>
+                    <!-- Make sure you have replaced this with your own UUID -->
+                    <winUpgradeUuid>c78b6f3c-a96c-4b6e-8b6f-2b7c6c4c5e3f</winUpgradeUuid>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

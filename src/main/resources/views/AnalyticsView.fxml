@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourname.scheduler.controller.AnalyticsViewController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Productivity Analytics">
+        <font>
+            <Font name="System Bold" size="24.0" />
+        </font>
+    </Text>
+    <HBox alignment="CENTER" spacing="20.0">
+        <VBox alignment="CENTER" spacing="10.0">
+            <Text text="Tasks by Status" />
+            <PieChart fx:id="statusPieChart" title="" prefHeight="250" prefWidth="300" />
+        </VBox>
+        <VBox alignment="CENTER" spacing="10.0">
+            <Text text="Tasks by Priority" />
+            <PieChart fx:id="priorityPieChart" title="" prefHeight="250" prefWidth="300" />
+        </VBox>
+    </HBox>
+    <Button fx:id="closeButton" mnemonicParsing="false" onAction="#handleClose" text="Close" />
+</VBox>
